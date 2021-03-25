@@ -26,7 +26,6 @@ public class FingerprintDialog extends DialogFragment implements FingerprintHand
     private boolean isAuthInProgress;
 
     private TextView mFingerprintError;
-    private ImageView fingerprintIcon;
 
     private String authReason;
     private int imageColor = 0;
@@ -65,8 +64,6 @@ public class FingerprintDialog extends DialogFragment implements FingerprintHand
 
         this.mFingerprintError = (TextView) v.findViewById(R.id.fingerprint_error);
         this.mFingerprintError.setText(this.errorText);
-
-        this.fingerprintIcon = (ImageView) v.findViewById(R.id.fingerprint_icon);
 
         final Button mCancelButton = (Button) v.findViewById(R.id.cancel_button);
         mCancelButton.setText(this.cancelText);
@@ -174,12 +171,10 @@ public class FingerprintDialog extends DialogFragment implements FingerprintHand
 
     @Override
     public void onError(String errorString, int errorCode) {
-        final int notRecognizedFingerprintErrorCode = 105; // Fingerprint not recognized but not blocked error
+        final int notRecognizedFingerprintErrorCode = 105; // unnecessary message
         if (errorCode != notRecognizedFingerprintErrorCode) {
-            // Fingerprint blocked
             this.mFingerprintError.setVisibility(View.VISIBLE);
             this.mFingerprintError.setText(errorString);
-            this.fingerprintIcon.setImageResource(R.drawable.red_fingerprint)
         }
     }
 
